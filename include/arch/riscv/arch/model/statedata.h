@@ -23,6 +23,7 @@
 
 #include <config.h>
 #include <types.h>
+#include <arch/object/vcpu.h>
 #include <util.h>
 #include <object/structures.h>
 #include <arch/types.h>
@@ -32,6 +33,10 @@ NODE_STATE_BEGIN(archNodeState)
 /* TODO: add RISCV-dependent fields here */
 /* Bitmask of all cores should receive the reschedule IPI */
 NODE_STATE_DECLARE(word_t, ipiReschedulePending);
+#ifdef CONFIG_RISCV_HE
+NODE_STATE_DECLARE(vcpu_t, *riscvHSCurVCPU);
+NODE_STATE_DECLARE(bool_t, riscvHSVCPUActive);
+#endif
 NODE_STATE_END(archNodeState);
 
 extern asid_pool_t *riscvKSASIDTable[BIT(asidHighBits)];

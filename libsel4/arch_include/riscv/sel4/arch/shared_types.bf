@@ -19,4 +19,7 @@ tagged_union seL4_Fault seL4_FaultType {
     tag UserException 3
     -- arch specific faults
     tag VMFault 5
+#ifdef CONFIG_RISCV_HE
+    tag VCPUFault 6
+#endif
 }

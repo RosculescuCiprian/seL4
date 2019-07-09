@@ -35,3 +35,8 @@ pte_t kernel_root_pageTable[BIT(PT_INDEX_BITS)] ALIGN_BSS(BIT(seL4_PageTableBits
 #if __riscv_xlen != 32
 pte_t kernel_image_level2_pt[BIT(PT_INDEX_BITS)] ALIGN_BSS(BIT(seL4_PageTableBits));
 #endif
+
+#ifdef CONFIG_RISCV_HE
+UP_STATE_DEFINE(vcpu_t, *riscvHSCurVCPU);
+UP_STATE_DEFINE(bool_t, riscvHSVCPUActive);
+#endif

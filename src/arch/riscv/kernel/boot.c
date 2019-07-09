@@ -131,6 +131,10 @@ BOOT_CODE static void init_cpu(void)
     write_stvec((word_t)trap_entry);
 
     activate_kernel_vspace();
+
+#ifdef CONFIG_RISCV_HE
+    vcpu_boot_init();
+#endif
 }
 
 /* This and only this function initialises the platform. It does NOT initialise any kernel state. */
